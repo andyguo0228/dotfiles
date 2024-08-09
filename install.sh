@@ -38,3 +38,14 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 
 echo "Installing ZSH Syntax Highlighting"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+sudo apt-get update
+
+echo "Installing micro text editor"
+# Check if micro is already installed
+if ! command -v micro &> /dev/null; then
+    curl https://getmic.ro | bash
+    echo "Micro has been installed."
+else
+    echo "Micro is already installed."
+fi
