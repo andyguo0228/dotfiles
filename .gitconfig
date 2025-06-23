@@ -1,7 +1,7 @@
 [user]
 	# Replace with your actual name and email
-	name = Your Name
-	email = your.email@example.com
+	name = Andy Guo
+	email = 104121467+andyguo0228@users.noreply.github.com
 
 [core]
 	editor = code --wait
