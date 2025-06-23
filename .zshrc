@@ -33,9 +33,11 @@ alias ~='cd ~'
 alias dt='cd ~/Desktop'
 alias ws='cd /workspaces'
 
+alias reload='source ~/.zshrc'
+
 # Custom prompt
-autoload -Uz colors && colors
-PROMPT='%{$fg[green]%}%n@%m%{$reset_color%}:%{$fg[blue]%}%~%{$reset_color%}$ '
+# autoload -Uz colors && colors
+# PROMPT='%{$fg[green]%}%n@%m%{$reset_color%}:%{$fg[blue]%}%~%{$reset_color%}$ '
 
 # Enable syntax highlighting if available
 if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
