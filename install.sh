@@ -175,10 +175,12 @@ create_symlink "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc"
 create_symlink "$SCRIPT_DIR/.gitconfig" "$HOME/.gitconfig"
 create_symlink "$SCRIPT_DIR/.dircolors" "$HOME/.dircolors"
 
-# Verify current shell
+# Change default shell to zsh if not already set
 if [ "$SHELL" != "$(which zsh)" ]; then
-    echo -e "${YELLOW}Note: Default shell is $SHELL, not $(which zsh)${NC}"
-    echo -e "${YELLOW}This is handled automatically by devcontainer.json${NC}"
+    echo -e "${YELLOW}Your current shell is $SHELL${NC}"
+    echo -e "${YELLOW}To make zsh your default shell, run:${NC}"
+    echo -e "  chsh -s $(which zsh)"
+    echo -e "${YELLOW}This is handled automatically by devcontainer.json in Codespaces${NC}"
 fi
 
 # Update dircolors
