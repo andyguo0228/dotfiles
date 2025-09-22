@@ -1,18 +1,30 @@
-# Personal zsh configuration
+# Personal zsh configuration with Oh My Zsh
 
-# Enable command completion
-autoload -Uz compinit
-compinit
+# Oh My Zsh configuration
+export ZSH="$HOME/.oh-my-zsh"
+export EZA_CONFIG_DIR="$HOME/.config/eza"
 
-# History configuration
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_SPACE
-setopt SHARE_HISTORY
+# PLUGINS
+plugins=(git
+         zsh-autosuggestions
+         zsh-syntax-highlighting
+         you-should-use
+         zsh-bat
+)
 
-# Basic aliases
+# Load Oh My Zsh if available
+if [ -d "$ZSH" ]; then
+    source $ZSH/oh-my-zsh.sh
+fi
+
+# ALIASES
+alias python="python3"
+alias pip="pip3"
+alias ls="eza -al --icons"
+alias profile="micro ~/.zshrc"
+alias reload="source ~/.zshrc"
+
+# Additional useful aliases (keeping some from original config)
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -33,26 +45,25 @@ alias ~='cd ~'
 alias dt='cd ~/Desktop'
 alias ws='cd /workspaces'
 
-alias reload='source ~/.zshrc'
-
-# Custom prompt
-# autoload -Uz colors && colors
-# PROMPT='%{$fg[green]%}%n@%m%{$reset_color%}:%{$fg[blue]%}%~%{$reset_color%}$ '
-
-# Enable syntax highlighting if available
-if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
-# Enable auto-suggestions if available
-if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-
 # Custom functions
 mkcd() {
     mkdir -p "$1" && cd "$1"
 }
+
+# Enable syntax highlighting if available (fallback for non-Oh My Zsh systems)
+if [ ! -d "$ZSH" ] && [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+# Enable auto-suggestions if available (fallback for non-Oh My Zsh systems)
+if [ ! -d "$ZSH" ] && [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# Oh My Posh prompt configuration
+if command -v oh-my-posh &> /dev/null; then
+    eval "$(oh-my-posh init zsh --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/kushal.omp.json')"
+fi
 
 # Load local customizations if they exist
 if [ -f ~/.zshrc.local ]; then

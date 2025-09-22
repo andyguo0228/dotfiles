@@ -41,6 +41,8 @@ done
 DIRS=(
     ".ssh"
     ".config/git"
+    ".config/eza"
+    ".oh-my-zsh"
 )
 
 for dir in "${DIRS[@]}"; do

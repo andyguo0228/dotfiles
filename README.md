@@ -4,10 +4,13 @@ A simple dotfiles repository for setting up personalized development environment
 
 ## Features
 
-- **Zsh configuration** with custom prompt, aliases, and history settings
+- **Oh My Zsh configuration** with carefully selected plugins for enhanced productivity
+- **Modern terminal tools** including eza (better ls) and micro editor
+- **Beautiful prompt** with Oh My Posh and Kushal theme
+- **Enhanced shell experience** with auto-suggestions, syntax highlighting, and useful reminders
 - **Git configuration** with useful aliases and VS Code integration
 - **Directory colors** for better file type visualization
-- **Automated installation** with backup functionality
+- **Automated installation** with comprehensive dependency management
 - **GitHub Codespaces integration** via devcontainer configuration
 
 ## Quick Start
@@ -35,12 +38,16 @@ cd ~/dotfiles
 ## What's Included
 
 ### Shell Configuration (.zshrc)
-- Custom prompt with colors
-- Useful aliases for common commands
-- Git aliases for faster workflow
-- Directory navigation shortcuts
-- History configuration with deduplication
-- Auto-completion and syntax highlighting support
+- **Oh My Zsh** framework with essential plugins:
+  - `git` - Git aliases and status information
+  - `zsh-autosuggestions` - Command suggestions based on history
+  - `zsh-syntax-highlighting` - Real-time syntax highlighting
+  - `you-should-use` - Reminds you to use aliases you've defined
+  - `zsh-bat` - Better cat command with syntax highlighting
+- **Oh My Posh** prompt with beautiful Kushal theme
+- **Modern aliases** using eza for enhanced file listing
+- Useful shortcuts for Python development and file editing
+- Directory navigation and git workflow shortcuts
 
 ### Git Configuration (.gitconfig)
 - VS Code as default editor and merge tool
@@ -50,13 +57,18 @@ cd ~/dotfiles
 - Modern git defaults
 
 ### Directory Colors (.dircolors)
-- Custom color scheme for `ls` command
-- File type color coding
+- Custom color scheme for file type visualization
+- Enhanced file type color coding
 - Archive and media file highlighting
 
 ### Scripts
-- `install.sh` - Main installation script with dependency management
+- `install.sh` - Comprehensive installation script with dependency management
 - `backup.sh` - Backup existing configurations before installation
+
+### Modern Development Tools
+- **eza** - Modern replacement for ls with icons and better formatting
+- **micro** - User-friendly terminal text editor
+- **oh-my-posh** - Cross-platform prompt engine for beautiful shell prompts
 
 ### Devcontainer Configuration
 - Automatic zsh setup in Codespaces
@@ -94,7 +106,11 @@ Create a `~/.zshrc.local` file for environment-specific customizations that won'
 ## Usage Tips
 
 ### Useful Aliases Included
+- `ls` - Enhanced file listing with eza (icons and colors)
 - `ll` - Detailed file listing
+- `python` / `pip` - Shortcuts to python3/pip3
+- `profile` - Quick edit of .zshrc with micro editor
+- `reload` - Reload shell configuration
 - `gs` - Git status
 - `gc` - Git commit
 - `..` - Go up one directory
