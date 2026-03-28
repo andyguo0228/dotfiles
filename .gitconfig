@@ -62,3 +62,5 @@
 	added = yellow
 	changed = green
 	untracked = cyan
+[credential]
+	helper = "!f() { /home/codespace/.vscode-server/bin/cfbea10c5ffb233ea9177d34726e6056e89913dc/node /tmp/vscode-remote-containers-c2f0dff2-9795-45c7-a78e-d14153c87416.js git-credential-helper $*; }; f"

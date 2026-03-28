@@ -1,6 +1,6 @@
 {
   "name": "Personal Development Environment",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
@@ -32,13 +32,12 @@
         }
       },
       "extensions": [
-        "ms-vscode.vscode-json",
         "redhat.vscode-yaml",
         "ms-python.python",
         "ms-vscode.vscode-typescript-next",
         "bradlc.vscode-tailwindcss",
         "esbenp.prettier-vscode",
-        "ms-vscode.vscode-eslint"
+        "dbaeumer.vscode-eslint"
       ]
     }
   },

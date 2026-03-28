@@ -42,6 +42,18 @@ create_symlink() {
     ln -s "$source" "$target"
 }
 
+# Remove legacy eza apt source if present (can break apt update in containers).
+cleanup_legacy_eza_repo() {
+    if [ -f "/etc/apt/sources.list.d/gierens.list" ]; then
+        echo -e "${YELLOW}Removing legacy gierens apt source...${NC}"
+        sudo rm -f /etc/apt/sources.list.d/gierens.list
+    fi
+
+    if [ -f "/etc/apt/keyrings/gierens.gpg" ]; then
+        sudo rm -f /etc/apt/keyrings/gierens.gpg
+    fi
+}
+
 # Install zsh if not present
 if ! command -v zsh &> /dev/null; then
     echo -e "${YELLOW}Installing zsh...${NC}"
@@ -92,12 +104,9 @@ echo -e "${YELLOW}Installing additional tools...${NC}"
 # Install eza (modern replacement for ls)
 if ! command -v eza &> /dev/null; then
     if command -v apt-get &> /dev/null; then
-        # For Ubuntu/Debian - install from official repository
-        sudo mkdir -p /etc/apt/keyrings
-        wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
-        echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
-        sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
-        sudo apt update && sudo apt install -y eza 2>/dev/null || {
+        cleanup_legacy_eza_repo
+        # Prefer distro package and avoid adding third-party apt sources.
+        sudo apt-get update && sudo apt-get install -y eza 2>/dev/null || {
             # Fallback: try installing via cargo if available
             if command -v cargo &> /dev/null; then
                 cargo install eza
